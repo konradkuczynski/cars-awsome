@@ -8,10 +8,14 @@
             <h4 th:text="${welcome}"></h4>
         </div>
     </div>
+    <div class="row" th:replace="fragments/add :: add"></div>
+
 
     <div class="row" th:replace="fragments/table :: table">
 
     </div>
+
+    <div class="row"><a href="swagger-ui.html">SwaggerDocs</a> </div>
 </div>
 
 
