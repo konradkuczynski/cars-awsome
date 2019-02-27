@@ -2,22 +2,14 @@
 
 
 
-    <form th:action="@{/add}" th:object="${car}" method="post" action="/add">
+    <form  th:action="@{/add}" th:object="${car}" method="post" action="/add">
 
-
-
-        <input type="text" name="brand"/>
-
-        <input type="text" name="model"/>
-
-        <input type="text" name="power"/>
-
-        <input type="text" name="plate"/>
-
-
+        <input class="text-" type="text" placeholder="brand"/>
+        <input type="text" placeholder="model"/>
+        <input type="text" placeholder="power"/>
+        <input type="text" placeholder="plate"/>
 
         <button type="submit" class="btn btn-sm btn-success">create</button>
-
     </form>
 
 

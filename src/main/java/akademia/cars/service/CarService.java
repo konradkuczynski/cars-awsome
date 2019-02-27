@@ -106,7 +106,7 @@ public class CarService {
             return carMapper.map(ca.get());
 
         }
-        throw new NotFoundException("Cat not exists");
+        throw new NotFoundException("Car not exists");
     }
 
 

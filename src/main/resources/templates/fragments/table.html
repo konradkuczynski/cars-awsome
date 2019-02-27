@@ -5,18 +5,46 @@
             <th>brand</th>
             <th>model</th>
             <th>power</th>
+            <th>plate</th>
         </tr>
         <tr th:each="car : ${cars}">
             <td th:text="${car.getId()}"></td>
             <td th:text="${car.getBrand()}"></td>
             <td th:text="${car.getModel()}"></td>
             <td th:text="${car.getPower()}"></td>
+            <td th:text="${car.getPlate()}"></td>
 
-            <td><button class="btn btn-sm btn-success">update car</button></td>
-            <td><button class="btn btn-sm btn-danger">delete</button></td>
+            <td><form th:action="@{/update}" action="update" th:object="${car}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${car.getBrand()}" name="brand">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPower()}" name="power">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
 
+                    <button class="btn btn-sm btn-success" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">update
+                    </button>
+                </div>
+            </form>
+            </td>
 
+            <td><form th:action="@{/delete}" action="delete" th:object="${car}" method="post">
+                <div class="form-group">
+                    <input type="hidden" th:value="${car.getBrand()}" name="brand">
+                    <input type="hidden" th:value="${car.getModel()}" name="model">
+                    <input type="hidden" th:value="${car.getPower()}" name="power">
+                    <input type="hidden" th:value="${car.getPlate()}" name="plate">
 
+                    <button class="btn btn-sm btn-danger" type="submit"
+                            style="margin: 0.2em; width: 60px; float: left">delete
+                    </button>
+                </div>
+            </form>
+            </td>
         </tr>
     </table>
 </div>
+
+
+
+

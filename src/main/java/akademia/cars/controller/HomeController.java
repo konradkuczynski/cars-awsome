@@ -1,6 +1,7 @@
 package akademia.cars.controller;
 
 import akademia.cars.exceptions.AlreadyExists;
+import akademia.cars.exceptions.NotFoundException;
 import akademia.cars.model.Car;
 import akademia.cars.model.dtos.CarDTO;
 import akademia.cars.service.CarService;
@@ -40,6 +41,35 @@ public class HomeController {
         carService.addCar(car);
 
 
+        return "redirect:/home";
+    }
+
+    @PostMapping("update")
+    public String update(@Valid @ModelAttribute CarDTO car, Model model) {
+        model.addAttribute("car", car);
+        return "update";
+    }
+
+    @PostMapping("upd")
+    public String upd(@Valid @ModelAttribute CarDTO car, String plate,  Model model) throws NotFoundException {
+        model.addAttribute("car", car);
+        model.addAttribute("plate", plate);
+        carService.updateCarByPlate(plate, car);
+        return "redirect:/home";
+    }
+
+    @PostMapping("delete")
+    public String delete(@Valid @ModelAttribute CarDTO car, Model model) {
+
+        model.addAttribute("car", car);
+        return "delete";
+    }
+
+    @PostMapping("del")
+    public String del(@Valid @ModelAttribute CarDTO car, String plate, Model model) throws NotFoundException{
+        model.addAttribute("car", car);
+        model.addAttribute("plate", plate);
+        carService.deleteCar(plate);
         return "redirect:/home";
     }
 
