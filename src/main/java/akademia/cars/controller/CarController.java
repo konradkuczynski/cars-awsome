@@ -1,6 +1,6 @@
 package akademia.cars.controller;
 
-import akademia.cars.exceptions.AlreadyExists;
+import akademia.cars.exceptions.AlreadyExistsException;
 import akademia.cars.exceptions.NotFoundException;
 import akademia.cars.model.Car;
 import akademia.cars.model.dtos.CarDTO;
@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -58,7 +57,7 @@ public class CarController {
     }
 
     @PostMapping("dto/cars")
-    public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO) throws AlreadyExists {
+    public ResponseEntity<?> addCar(@RequestBody CarDTO carDTO) throws AlreadyExistsException {
         if(!carService.addCar(carDTO)) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);// http 409
         } else { return new ResponseEntity<>(HttpStatus.CREATED);} //http 201
@@ -70,7 +69,7 @@ public class CarController {
             @RequestParam String model,
             @RequestParam String power,
             @RequestParam String plate)
-            throws AlreadyExists {
+            throws AlreadyExistsException {
         if(!carService.addCar(new CarDTO(brand,model,power,plate))) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);// http 409
         } else { return new ResponseEntity<>(HttpStatus.CREATED);} //http 201
